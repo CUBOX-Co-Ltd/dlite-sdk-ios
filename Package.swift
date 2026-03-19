@@ -7,12 +7,17 @@ let package = Package(
         .iOS(.v15)
     ],
     products: [
+        .library(name: "DliteSDK", targets: ["DliteSDK"]),
         .library(name: "Dlite", targets: ["Dlite"]),
         .library(name: "Cameramodule", targets: ["Cameramodule"]),
         .library(name: "Inferencemodule", targets: ["Inferencemodule"]),
         .library(name: "LicenseModule", targets: ["LicenseModule"]),
     ],
     targets: [
+        .target(
+            name: "DliteSDK",
+            dependencies: ["Dlite", "Cameramodule", "Inferencemodule", "LicenseModule"]
+        ),
         .binaryTarget(
             name: "Dlite",
             url: "https://github.com/CUBOX-Co-Ltd/dlite-sdk-ios/releases/download/2.0.0/Dlite.xcframework.zip",

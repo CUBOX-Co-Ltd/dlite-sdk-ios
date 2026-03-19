@@ -28,6 +28,27 @@ In the example app, we propose the following three features.
 
 <br/>
 
+## Troubleshooting
+
+### Clear SPM Cache
+
+If you encounter the error `unexpectedly did not find the new dependency in the package graph` when adding or updating the package, try clearing the SPM cache:
+
+```bash
+# 1. Remove SPM cache
+rm -rf ~/Library/Caches/org.swift.swiftpm
+
+# 2. Remove Xcode DerivedData
+rm -rf ~/Library/Developer/Xcode/DerivedData
+```
+
+You can also reset caches from Xcode:
+- **File → Packages → Reset Package Caches**
+
+After clearing the cache, re-open your Xcode project and resolve packages again.
+
+<br/>
+
 ## If you'd like to use our SDK
 Please get in touch with our operations team to proceed to the next steps. <br/>
 You can reach us at dlite@secernai.ai <br/> 
