@@ -30,5 +30,5 @@ In the example app, we propose the following three features.
 
 ## If you'd like to use our SDK
 Please get in touch with our operations team to proceed to the next steps. <br/>
-You can reach us at devTeam@cubox.ai <br/> 
+You can reach us at dlite@secernai.ai <br/> 
 I will always do my best to help you.

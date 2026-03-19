@@ -112,6 +112,10 @@
 			);
 			name = Sample;
 			packageProductDependencies = (
+				6E77355A2F6BD428002FEB00 /* Dlite */,
+				6E77355B2F6BD428002FEB00 /* Cameramodule */,
+				6E77355C2F6BD428002FEB00 /* Inferencemodule */,
+				6E77355D2F6BD428002FEB00 /* LicenseModule */,
 			);
 			productName = Sample;
 			productReference = F2B4F2C42D66A47B0035D33A /* Sample.app */;
@@ -577,11 +581,34 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/CUBOX-Co-Ltd/dlite-sdk-ios";
 			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.0.3;
+				kind = exactVersion;
+				version = 2.0.0-beta;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		6E77355A2F6BD428002FEB00 /* Dlite */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6E7735542F6BD428002FEB00 /* XCRemoteSwiftPackageReference "dlite-sdk-ios" */;
+			productName = Dlite;
+		};
+		6E77355B2F6BD428002FEB00 /* Cameramodule */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6E7735542F6BD428002FEB00 /* XCRemoteSwiftPackageReference "dlite-sdk-ios" */;
+			productName = Cameramodule;
+		};
+		6E77355C2F6BD428002FEB00 /* Inferencemodule */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6E7735542F6BD428002FEB00 /* XCRemoteSwiftPackageReference "dlite-sdk-ios" */;
+			productName = Inferencemodule;
+		};
+		6E77355D2F6BD428002FEB00 /* LicenseModule */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6E7735542F6BD428002FEB00 /* XCRemoteSwiftPackageReference "dlite-sdk-ios" */;
+			productName = LicenseModule;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = F2B4F2BC2D66A47B0035D33A /* Project object */;
 }
