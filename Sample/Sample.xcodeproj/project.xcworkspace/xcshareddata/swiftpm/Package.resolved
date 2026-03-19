@@ -1,13 +1,13 @@
 {
-  "originHash" : "11b78eba97192d19796cff581fdf69b3e65b441188b1448a1b67e5d7b825a354",
+  "originHash" : "220a97d7ad4a128ab7faa3de48c000c662f131f971d2f3810ccef7b7de64b6dd",
   "pins" : [
     {
-      "identity" : "alamofire",
+      "identity" : "dlite-sdk-ios",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/Alamofire/Alamofire",
+      "location" : "https://github.com/CUBOX-Co-Ltd/dlite-sdk-ios",
       "state" : {
-        "revision" : "513364f870f6bfc468f9d2ff0a95caccc10044c5",
-        "version" : "5.10.2"
+        "revision" : "58284dde23b65c66a4cf58a8d4894c900a4d87f1",
+        "version" : "1.0.3"
       }
     }
   ],

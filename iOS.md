@@ -1,52 +1,75 @@
 ## iOS SDK
-Last modified: 2025.04.28
+Last modified: 2026.03.19
 
 <br/> <br/>
 
 
-## SDK Requirements.
-
-The minimum requirements for UIKit for iOS are:
+## SDK Requirements
 
 - iOS 15+
-- Swift 5.0+
-- Xcode 16.1(16B40)
-
-![이미지](https://ekyc-idis-dev.cuboxservice.com:3001/images/998258151336703694b74a8-791d-4c01-b11c-ea3475611d99)
+- Swift 5.9+
+- Xcode 26+
 
 <br/> <br/>
 
-## SDK Setup
+## SDK Setup (SPM)
 
-1.	Add the three .xcframework files to Frameworks, Libraries, and Embedded Content.
-![이미지](https://ekyc-idis-dev.cuboxservice.com:3001/images/9982581511683789e2f018c-09a9-4b65-9438-bb40846a957c)
+### Adding Package Dependency
 
-<br/> <br/>
+1. In Xcode, go to **File > Add Package Dependencies**.
+2. Enter the repository URL in the search bar:
+   ```
+   https://github.com/CUBOX-Co-Ltd/dlite-sdk-ios
+   ```
+3. For **Dependency Rule**, select **Exact Version** and enter the desired version (e.g. `2.0.0`).
+4. Click **Add Package**.
+5. In the **Choose Package Products** dialog, check all four modules and ensure they are added to your app target:
+   - **Dlite** — Core SDK (API, license, initialization)
+   - **Cameramodule** — Camera UI and interaction
+   - **Inferencemodule** — AI-based face feature extraction
+   - **LicenseModule** — License authentication and verification
+6. Click **Add Package** to finish.
 
-2.	The Dlite Core Module uses Alamofire. Please add the dynamic version, AlamofireDynamic.
-![이미지](https://ekyc-idis-dev.cuboxservice.com:3001/images/9982581510605110ea0eb3d-7670-47b5-98dd-40def15470c9)
+### Verifying Installation
+
+After adding the package, confirm that all four modules appear under **Package Dependencies** in the Xcode project navigator. You should be able to import them in your Swift files:
+
+```swift
+import Dlite
+import Cameramodule
+import Inferencemodule
+import LicenseModule
+```
+
+> **Note:** All four modules are required for the SDK to function properly.
 
 <br/> <br/>
 
 
 ## SDK Initialization
-1. <span style="color:red; font-weight:bold;">[!] You must provide a license key in setLicenseKey during initialization.</span>
+<span style="color:red; font-weight:bold;">[!] You must provide a license key in setLicenseKey during initialization.</span>
 
 ```swift
-    private func initialize() {
-        let option = DliteOption.Builder()
-            .setLicenseKey(“your license key”)
-            .build()
-        
-        DliteSdk.with.initialize(option: option) { (completed, error) in
-            if completed {
-                isCompleted = true
-                print("Initialization successful")
-            } else {
-                print("Initialization failed: \(error)")
-            }
+import Dlite
+import Cameramodule
+
+private func initialize() {
+    let option = DliteOption.Builder()
+        .setLicenseKey("YOUR_LICENSE_KEY")
+        .setFaceRecognitionBaseUrl("YOUR_FRS_URL")
+        .setLivenessBaseUrl("YOUR_LIVENESS_URL")
+        .setModules(.inferenceModule)
+        .setLogLevel(.DEBUG)
+        .build()
+
+    DliteSdk.with.initialize(option: option) { (completed, error) in
+        if completed {
+            print("Initialization successful")
+        } else {
+            print("Initialization failed: \(String(describing: error))")
         }
     }
+}
 ```
 
 <br/> <br/>
@@ -55,14 +78,14 @@ The minimum requirements for UIKit for iOS are:
 1. The camera view runs once, returns the result, and then terminates.
 2. You can modify the UI using the provided functions.
 3. Result handling: Success - `CameraResult.result`, Failure - `CameraResult.error`
-4. Create one of the following options: LiveCapture, FaceRecognition, or ActiveLiveness
+4. Available modes: **LiveCapture**, **FaceRecognition**, **Liveness**
 
 ```swift
 private func createCameraView() -> CameraView {
     return CameraView(
         mode: .liveCapture(option: .init())
-//          mode: .faceRecognition(option: .init(faceId: "fong", isCheckValidation: true))
-//          model: .liveness(option: .init())
+//      mode: .faceRecognition(option: .init())
+//      mode: .liveness(option: .init())
     ) { result in
         switch result {
         case let .result(succeedStatus, image, faceId):
@@ -72,7 +95,7 @@ private func createCameraView() -> CameraView {
             break
         case let .error(errorStatus, errorMessage, exception):
             break
-            
+
         default: break
         }
     }

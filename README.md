@@ -17,7 +17,6 @@ In the example app, we propose the following three features.
 |1|Live Capture|Captures the moment when the face enters the screen as many frames as the user wants and delivers the resulting image.|
 |2|Face Recognition|You can recognize and delete faces by registering them on a specific server and giving them an ID. <br/> (However, This function requires the operation team to build a server, so please contact us.)|
 |3|Liveness|It determines whether the user's facial expressions and behaviors are forged by verifying the user's facial expressions and behaviors. When the discrimination is completed, the front image is delivered to the user.|
-|4|Passive Liveness|This feature is being prepared for release 🙏|
 
 <br/>
 

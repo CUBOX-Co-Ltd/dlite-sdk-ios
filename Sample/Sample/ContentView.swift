@@ -15,16 +15,15 @@ struct ContentView: View {
         case liveness
         case faceRecognition
     }
-    
+
     @State private var isCompleted: Bool = false
-    
+
     @State private var resultImage: UIImage? = nil
-    
-    // show
+
     @State private var currentType: CameraType = .liveness
     @State private var isShowView: Bool = false
     @State private var isShowSmartCapture: Bool = false
-    
+
     var body: some View {
         ZStack {
             if isShowSmartCapture {
@@ -32,7 +31,7 @@ struct ContentView: View {
                     option: .init(frontalPassedFrameCount: 30),
                     startRightAway: true,
                     onFrameState: { state in
-                        
+
                     },
                     onCaptureResult: { result in
                         switch result {
@@ -44,7 +43,7 @@ struct ContentView: View {
                                 }
                             }
                             print("success, status: \(status) / faceId: \(faceId)")
-                            
+
                         case let .error(errorStatus, errorMessage, exception):
                             print("error, exception: \(exception) / errorMessage: \(errorMessage)")
                         }
@@ -61,7 +60,7 @@ struct ContentView: View {
                             .frame(width: 180, height: 220)
                             .foregroundStyle(Color.gray.opacity(0.5))
                     }
-                    
+
                     Button(action: {
                         isShowSmartCapture = true
                     }, label: {
@@ -71,8 +70,8 @@ struct ContentView: View {
                     })
                     .background(Color.green)
                     .clipShape(RoundedRectangle(cornerRadius: 12))
+                    .disabled(!isCompleted)
 
-                    
                     Button(action: {
                         currentType = .faceRecognition
                         isShowView = true
@@ -83,7 +82,8 @@ struct ContentView: View {
                     })
                     .background(Color.brown)
                     .clipShape(RoundedRectangle(cornerRadius: 12))
-                    
+                    .disabled(!isCompleted)
+
                     Button(action: {
                         currentType = .liveness
                         isShowView = true
@@ -94,6 +94,7 @@ struct ContentView: View {
                     })
                     .background(Color.cyan)
                     .clipShape(RoundedRectangle(cornerRadius: 12))
+                    .disabled(!isCompleted)
                 }
                 .fullScreenCover(isPresented: $isShowView) {
                     createCameraView(type: currentType)
@@ -101,17 +102,20 @@ struct ContentView: View {
             }
         }
         .ignoresSafeArea(.all)
+        .onAppear {
+            initialize()
+        }
     }
-    
+
     private func createCameraView(type: CameraType) -> CameraView {
         var mode: CameraMode
         switch type {
         case .liveness:
             mode = .liveness(option: .init())
-            
+
         case .faceRecognition:
             mode = .faceRecognition(option: .init())
-            
+
         case .liveCapture:
             mode = .liveCapture(option: .init())
         }
@@ -124,25 +128,27 @@ struct ContentView: View {
                 break
             case let .error(errorStatus, errorMessage, exception):
                 break
-                
+
             default: break
             }
         }
     }
-    
+
     private func initialize() {
         let option = DliteOption.Builder()
-            .setLicenseKey("NCPAY-RNs4/WmL8Wl6qyt+PVYc4x6/XztI1ga9OdheqO/st7uuLSL0z3IP1AweWvNIlTh5")
-//            .setFaceRecognitionBaseUrl("https://silver-frs-api.silverodyssey.kr/")
+            .setLicenseKey("YOUR_LICENSE_KEY")
+            .setFaceRecognitionBaseUrl("YOUR_FRS_URL")
+            .setLivenessBaseUrl("YOUR_LIVENESS_URL")
             .setModules(.inferenceModule)
+            .setLogLevel(.DEBUG)
             .build()
-        
+
         DliteSdk.with.initialize(option: option) { (completed, error) in
             if completed {
                 isCompleted = true
                 print("Initialization successful")
             } else {
-                print("Initialization failed: \(error)")
+                print("Initialization failed: \(String(describing: error))")
             }
         }
     }
