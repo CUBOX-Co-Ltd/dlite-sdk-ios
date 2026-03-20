@@ -2,7 +2,7 @@
 import PackageDescription
 
 let package = Package(
-    name: "DliteSDK",
+    name: "dlite-sdk-ios",
     platforms: [
         .iOS(.v15)
     ],
@@ -21,22 +21,22 @@ let package = Package(
         .binaryTarget(
             name: "Dlite",
             url: "https://github.com/CUBOX-Co-Ltd/dlite-sdk-ios/releases/download/2.0.0/Dlite.xcframework.zip",
-            checksum: "1167152c3273b6764a16695d798a9fc267b526979c2ae2e84b78c0010e8c37e8"
+            checksum: "e9b0e4b04e90d37e23c36cd390a11a94daff52dabb3c671f41fad53e7361b89c"
         ),
         .binaryTarget(
             name: "Cameramodule",
             url: "https://github.com/CUBOX-Co-Ltd/dlite-sdk-ios/releases/download/2.0.0/Cameramodule.xcframework.zip",
-            checksum: "02879ba3e7acd265e5e100a1fe1e9be4d707f946aae5b16a073aafc924f2fe12"
+            checksum: "99834e27240f3d283901b6a2031ba65ac98a41f1622b487f8b464ec0ca2cc654"
         ),
         .binaryTarget(
             name: "Inferencemodule",
             url: "https://github.com/CUBOX-Co-Ltd/dlite-sdk-ios/releases/download/2.0.0/Inferencemodule.xcframework.zip",
-            checksum: "f8ee0e60d20adb2341fe84e7ad21fa4345a33fa33408ca240657e690e2e4417f"
+            checksum: "971d9b2187f3feecfd27c0f9f020d439aad48aa0cc9de9ef0392ced9f250fb98"
         ),
         .binaryTarget(
             name: "LicenseModule",
             url: "https://github.com/CUBOX-Co-Ltd/dlite-sdk-ios/releases/download/2.0.0/LicenseModule.xcframework.zip",
-            checksum: "3a54ec8945329928ef574f9d5de803deeb577e90dd713751a48fb47fa36e12fc"
+            checksum: "7782469a9f57f2607052d33da48e5fb3f24f3aa79925698ba2197fa153e77d27"
         ),
     ]
 )
