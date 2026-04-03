@@ -101,3 +101,30 @@ private func createCameraView() -> CameraView {
     }
 }
 ```
+
+<br/> <br/>
+
+## Using ID Card Detection
+1. The camera view detects an ID card in real-time and returns the result via `onDetected` callback.
+2. When the card is stably detected for consecutive frames (`stableThreshold`), it automatically captures.
+3. Available options: `stableThreshold` (default: 25), `isCropEnabled`, `cropRect`
+
+```swift
+CameraView(
+    mode: .idCard(option: IDCardOption(
+        stableThreshold: 25,
+        onDetected: { image, alignedImage, className, confidence in
+            // image: original captured image
+            // alignedImage: perspective-corrected card image (optional)
+            // className: detected card type (e.g. "kr-idcard", "kr-driver", "passport")
+            // confidence: detection confidence (0.0 ~ 1.0)
+        }
+    ))
+) { result in
+    switch result {
+    case let .error(errorStatus, errorMessage, exception):
+        break
+    default: break
+    }
+}
+```
