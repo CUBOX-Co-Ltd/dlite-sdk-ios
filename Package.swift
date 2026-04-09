@@ -9,11 +9,6 @@ let package = Package(
     products: [
         .library(name: "DliteSDK", targets: ["DliteSDK"]),
     ],
-    dependencies: [
-        // 외부 의존성 추가
-        .package(url: "https://github.com/Alamofire/Alamofire.git", .upToNextMajor(from: "5.9.1")),
-        .package(url: "https://github.com/krzyzanowskim/CryptoSwift.git", .upToNextMajor(from: "1.8.2"))
-    ],
     targets: [
         .target(
             name: "DliteSDK",
@@ -21,23 +16,23 @@ let package = Package(
         ),
         .binaryTarget(
             name: "Dlite",
-            url: "https://github.com/CUBOX-Co-Ltd/dlite-sdk-ios/releases/download/2.0.3/Dlite.xcframework.zip",
-            checksum: "ceaca6d7c4044cea52e881beec2212ae30aec27c30d73634794c9ddded3d8ef3"
+            url: "https://github.com/CUBOX-Co-Ltd/dlite-sdk-ios/releases/download/2.0.4/Dlite.xcframework.zip",
+            checksum: "9227d1af9fbfc4da31ab1119b073b5ce17f89c120700ab5b0b910959aafa9fb9"
         ),
         .binaryTarget(
             name: "Cameramodule",
-            url: "https://github.com/CUBOX-Co-Ltd/dlite-sdk-ios/releases/download/2.0.3/Cameramodule.xcframework.zip",
-            checksum: "c9b326ec902d7544ff55b3347b860cceed8cae17431a82e3d893d7e8b2523cc0"
+            url: "https://github.com/CUBOX-Co-Ltd/dlite-sdk-ios/releases/download/2.0.4/Cameramodule.xcframework.zip",
+            checksum: "c3c04651f92eaa274591f64f486545922321daf19f7394fc8d86a0168022551a"
         ),
         .binaryTarget(
             name: "Inferencemodule",
-            url: "https://github.com/CUBOX-Co-Ltd/dlite-sdk-ios/releases/download/2.0.3/Inferencemodule.xcframework.zip",
-            checksum: "904d88c8ae00557722c3718a2ed08087ab44aa199812b18d9a25cf9b052a05ce"
+            url: "https://github.com/CUBOX-Co-Ltd/dlite-sdk-ios/releases/download/2.0.4/Inferencemodule.xcframework.zip",
+            checksum: "893f2d71f3fd712dcecda50a7d233d487dc86ff86efc4286c997e936f5df734d"
         ),
         .binaryTarget(
             name: "LicenseModule",
-            url: "https://github.com/CUBOX-Co-Ltd/dlite-sdk-ios/releases/download/2.0.3/LicenseModule.xcframework.zip",
-            checksum: "07a7c42a8e108e44c604a5fc8b887e429662aebdf0e8b0e019508b1f532a57db"
+            url: "https://github.com/CUBOX-Co-Ltd/dlite-sdk-ios/releases/download/2.0.4/LicenseModule.xcframework.zip",
+            checksum: "253d319c706466f0a22bb0c2f5e5c4322c28cef8954418704e2dfd2b80b89625"
         ),
     ]
 )
